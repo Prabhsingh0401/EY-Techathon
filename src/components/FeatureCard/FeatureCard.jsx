@@ -1,3 +1,4 @@
+import { Link } from "react-router-dom";
 import { Button } from "../FeatureButton/FeatureButton";
 
 export function FeatureCard () {
@@ -10,7 +11,7 @@ export function FeatureCard () {
             </div>
             <div className="h-[60vh] w-[20vw] ml-2 backdrop-blur-sm bg-zinc-800/50 rounded-[30px] p-8">
                 <h1 className="font-extrabold w-[80%] text-3xl mb-[5vw]">Multilingual AI ChatBot</h1>
-                <Button></Button>
+                <Link to='/ChatBot'><Button></Button></Link>
             </div>
             <div className="h-[60vh] w-[20vw] ml-2 backdrop-blur-sm bg-zinc-800/50 rounded-[30px] p-8">
                 <h1 className="font-extrabold w-[80%] text-3xl mb-8">Community Mentorship Support</h1>

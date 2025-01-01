@@ -1,22 +1,17 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import './App.css'
-import { NavBar } from './components/NavBar/NavBar'
-import { Footer } from './components/Footer/Footer'
-import { HeroSection } from './components/HeroSection/HeroSection'
-import { Features } from './components/Features/Features'
+import { Home } from "./components/Home/Home";
+import ChatBot from "./components/ChatBot/ChatBot";
 
 function App() {
-  const [count, setCount] = useState(0)
 
   return (
-    <>
-    <NavBar></NavBar>
-    <HeroSection></HeroSection>
-    <Features></Features>
-    <Footer></Footer>
-    </>
+    <Router>
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/ChatBot" element={<ChatBot />} />
+      </Routes>
+    </Router>
   )
 }
 
