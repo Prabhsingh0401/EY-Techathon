@@ -1,4 +1,4 @@
-import { NavBar } from "../NavBar/NavBar"
+import NavBar from "../NavBar/NavBar"
 import { HeroSection } from "../HeroSection/HeroSection"
 import { Features } from "../Features/Features"
 import { Footer } from "../Footer/Footer"

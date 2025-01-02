@@ -1,4 +1,4 @@
-export function NavBar() {
+const NavBar = () => {
     return(
         <>
         <nav className="backdrop-blur-sm bg-grey/700 dark:bg-gray-900/30 w-[97vw] ml-4 rounded-[1.3vw] fixed top-5 shadow-lg z-[999]">
@@ -37,3 +37,5 @@ export function NavBar() {
         </>
     )
 }
+
+export default NavBar

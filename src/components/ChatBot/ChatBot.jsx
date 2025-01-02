@@ -1,7 +1,8 @@
 import React, { useState, useRef, useEffect } from "react";
-import axios from "axios"; 
+import axios from "axios";
+import { SendButton } from "../ChatBotSendButton/ChatBotSendButton";
 
-axios.defaults.baseURL = "http://localhost:5000"; 
+axios.defaults.baseURL = "http://localhost:5000";
 
 const ChatHistory = ({ chatHistory }) => {
   const endOfMessagesRef = useRef(null);
@@ -17,8 +18,8 @@ const ChatHistory = ({ chatHistory }) => {
           key={index}
           className={`max-w-[70%] break-words px-4 py-2 rounded-lg ${
             entry.type === "user"
-              ? "bg-purple-400 text-white self-start"
-              : "bg-purple-600 text-white self-end"
+              ? "bg-[#e7478f] text-white self-start"
+              : "bg-[#e05080] text-white self-end"
           }`}
         >
           {entry.message}
@@ -35,9 +36,7 @@ const ChatBot = ({ onClose }) => {
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
-  const handleUserInput = (e) => {
-    setUserInput(e.target.value);
-  };
+  const handleUserInput = (e) => setUserInput(e.target.value);
 
   const sendMessage = async () => {
     if (userInput.trim() === "") return;
@@ -77,7 +76,7 @@ const ChatBot = ({ onClose }) => {
   };
 
   return (
-    <div className="fixed top-0 right-0 bottom-0 w-[27rem] z-50 bg-white shadow-lg border border-gray-300 rounded-lg flex flex-col p-4 h-full overflow-hidden">
+    <div className="fixed top-[15%] right-10 bottom-0 w-[27rem] z-50 bg-zinc-800/50 bg-opacity-50 backdrop-blur-sm shadow-lg rounded-lg flex flex-col p-4 h-[83vh] overflow-hidden">
       <div className="flex-grow overflow-y-auto">
         <ChatHistory chatHistory={chatHistory} />
       </div>
@@ -95,26 +94,14 @@ const ChatBot = ({ onClose }) => {
             onChange={handleUserInput}
             onKeyPress={handleKeyPress}
             disabled={isLoading}
-            className="flex-grow px-4 py-2 border border-gray-300 rounded-lg shadow-sm focus:ring-2 focus:ring-blue-400 focus:outline-none"
+            className="flex-grow px-4 py-2 rounded-xl shadow-sm focus:ring-2 focus:outline-none bg-gray-700/10 bg-opacity-50 text-white"
           />
-          <button
+          <SendButton
+            isLoading={isLoading}
             onClick={sendMessage}
             disabled={isLoading}
-            className={`px-4 py-2 rounded-lg font-semibold ${
-              isLoading
-                ? "bg-gray-400 cursor-not-allowed"
-                : "bg-blue-500 hover:bg-blue-600 text-white"
-            }`}
-          >
-            {isLoading ? "Sending..." : "Send"}
-          </button>
+          />
         </div>
-        <button
-          className="w-full bg-red-600 hover:bg-red-700 text-white py-2 rounded-lg font-semibold"
-          onClick={onClose}
-        >
-          Close
-        </button>
       </div>
     </div>
   );
