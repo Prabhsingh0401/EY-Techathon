@@ -7,6 +7,7 @@ import { Mic, MicOff } from 'lucide-react';
 
 axios.defaults.baseURL = "http://localhost:5000";
 
+// ChatHistory Component
 const ChatHistory = ({ chatHistory }) => {
   const endOfMessagesRef = useRef(null);
 
@@ -22,10 +23,13 @@ const ChatHistory = ({ chatHistory }) => {
           className={`max-w-[70%] break-words px-4 py-2 rounded-lg ${
             entry.type === "user"
               ? "bg-[#e7478f] text-white self-start"
-              : "bg-[#e05080] text-white self-end"
+              : "bg-[#4CAF50] text-white self-end"
           }`}
         >
-          {entry.message}
+          {/* Render the bot's message with HTML formatting */}
+          <div
+            dangerouslySetInnerHTML={{ __html: entry.message }}
+          />
         </div>
       ))}
       <div ref={endOfMessagesRef} />
@@ -33,6 +37,7 @@ const ChatHistory = ({ chatHistory }) => {
   );
 };
 
+// ChatBot Component
 const ChatBot = ({ onClose }) => {
   const [userInput, setUserInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);
@@ -113,7 +118,7 @@ const ChatBot = ({ onClose }) => {
   }
 
   return (
-    <div className="fixed top-[15%] right-10 bottom-0 w-[27rem] z-50 bg-zinc-800/50 bg-opacity-50 backdrop-blur-sm shadow-lg rounded-lg flex flex-col p-4 h-[83vh] overflow-hidden">
+    <div className="fixed top-[15%] right-10 bottom-0 w-[32rem] z-50 bg-zinc-800/50 bg-opacity-50 backdrop-blur-sm shadow-lg rounded-lg flex flex-col p-4 h-[83vh] overflow-hidden">
       <div className="flex-grow overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <ChatHistory chatHistory={chatHistory} />
       </div>
