@@ -15,7 +15,7 @@ export function FeatureCard () {
             </div>
             <div className="h-[60vh] w-[20vw] ml-2 backdrop-blur-sm bg-zinc-800/50 rounded-[30px] p-8">
                 <h1 className="font-extrabold w-[80%] text-3xl mb-8">Community Mentorship Support</h1>
-                <Button></Button>
+                <Link to='/Video'><Button></Button></Link>
             </div>
             <div className="h-[60vh] w-[20vw] ml-2 backdrop-blur-sm bg-zinc-800/50 rounded-[30px] p-8">
                 <h1 className="font-extrabold w-[80%] text-3xl">AI recommended Investment Plans</h1>
