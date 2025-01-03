@@ -1,0 +1,191 @@
+{
+    "Business Planning": {
+      "title": {
+        "en": "Planting Your Business: A Step-by-Step Guide to Business Planning",
+        "hi": "अपने व्यवसाय की योजना बनाना: एक कदम दर कदम मार्गदर्शिका"
+      },
+      "overallGoal": {
+        "en": "By the end of this module, you will understand the core elements of a business plan and be able to create a simple, actionable plan for your own business.",
+        "hi": "इस मॉड्यूल के अंत तक, आप एक व्यापार योजना के मुख्य तत्वों को समझेंगे और अपने व्यवसाय के लिए एक सरल, क्रियाशील योजना बनाने में सक्षम होंगे।"
+      },
+      "sections": [
+        {
+          "title": {
+            "en": "Introduction: The Seeds of Success",
+            "hi": "परिचय: सफलता के बीज"
+          },
+          "content": {
+            "en": "The journey to a successful business starts with a solid plan. This module opens with a welcoming video featuring a relatable woman from the community, sharing how planning transformed her business dreams into reality. Like tending a garden, a business plan nurtures growth, helps avoid problems, and allows you to make informed decisions.",
+            "hi": "एक सफल व्यवसाय की यात्रा एक ठोस योजना से शुरू होती है। यह मॉड्यूल एक स्वागत वीडियो के साथ शुरू होता है जिसमें समुदाय की एक सजीव महिला दिखती है, जो बताती है कि योजना कैसे उसके व्यवसाय के सपनों को वास्तविकता में बदलने में मदद की। जैसे एक बगिया की देखभाल करना, एक व्यवसाय योजना विकास को पोषित करती है, समस्याओं से बचने में मदद करती है और आपको सूचित निर्णय लेने की अनुमति देती है।"
+          },
+          "interactiveActivity": {
+            "en": "What are your hopes for your business? Share your aspirations to personalize your learning experience.",
+            "hi": "आपके व्यवसाय के लिए आपकी आशाएं क्या हैं? अपने सपनों को साझा करें ताकि आप अपनी शिक्षा का अनुभव व्यक्तिगत बना सकें।"
+          },
+          "learningObjectives": {
+            "en": [
+              "Understand why a business plan is essential.",
+              "Feel motivated to create your own plan."
+            ],
+            "hi": [
+              "समझें कि व्यापार योजना क्यों आवश्यक है।",
+              "अपनी योजना बनाने के लिए प्रेरित महसूस करें।"
+            ]
+          }
+        }
+      ]
+    },
+    "Basic Accounting": {
+      "title": {
+        "en": "Basic Accounting: A Simple Guide for Beginners",
+        "hi": "मूलभूत लेखांकन: शुरुआती के लिए एक सरल मार्गदर्शिका"
+      },
+      "overallGoal": {
+        "en": "By the end of this module, you will understand the basics of accounting and be able to manage your financial records effectively.",
+        "hi": "इस मॉड्यूल के अंत तक, आप लेखांकन की बुनियादी बातें समझेंगे और अपनी वित्तीय रिकॉर्ड को प्रभावी ढंग से प्रबंधित करने में सक्षम होंगे।"
+      },
+      "sections": [
+        {
+          "title": {
+            "en": "Introduction: Understanding Accounting",
+            "hi": "परिचय: लेखांकन को समझना"
+          },
+          "content": {
+            "en": "Accounting is the language of business. This module provides an introduction to accounting, explaining key concepts such as assets, liabilities, and equity. By learning the basics of accounting, you’ll be able to track your business finances more effectively.",
+            "hi": "लेखांकन व्यवसाय की भाषा है। यह मॉड्यूल लेखांकन का परिचय प्रदान करता है, जिसमें संपत्ति, देनदारियां और इक्विटी जैसे मुख्य विचारों को समझाया जाता है। लेखांकन की बुनियादी बातें सीखकर, आप अपने व्यवसाय के वित्त को अधिक प्रभावी ढंग से ट्रैक कर पाएंगे।"
+          },
+          "interactiveActivity": {
+            "en": "Try to record your business expenses for a month. Share your experience with the group.",
+            "hi": "एक महीने के लिए अपने व्यापार खर्चों को रिकॉर्ड करने की कोशिश करें। समूह के साथ अपना अनुभव साझा करें।"
+          },
+          "learningObjectives": {
+            "en": [
+              "Learn the fundamental concepts of accounting.",
+              "Understand how to track income and expenses.",
+              "Feel confident in managing basic financial records."
+            ],
+            "hi": [
+              "लेखांकन के मौलिक विचारों को सीखें।",
+              "आय और व्यय को ट्रैक करने का तरीका समझें।",
+              "मूल वित्तीय रिकॉर्ड को प्रबंधित करने में आत्मविश्वास महसूस करें।"
+            ]
+          }
+        }
+      ]
+    },
+    "Accessing Agricultural Loan": {
+      "title": {
+        "en": "Accessing Agricultural Loan: A Comprehensive Guide",
+        "hi": "कृषि ऋण तक पहुंच: एक व्यापक मार्गदर्शिका"
+      },
+      "overallGoal": {
+        "en": "By the end of this module, you will know how to apply for agricultural loans and the benefits they provide for farmers.",
+        "hi": "इस मॉड्यूल के अंत तक, आप जानेंगे कि कृषि ऋण के लिए कैसे आवेदन करें और ये किसानों के लिए क्या लाभ प्रदान करते हैं।"
+      },
+      "sections": [
+        {
+          "title": {
+            "en": "Introduction: Understanding Agricultural Loans",
+            "hi": "परिचय: कृषि ऋण को समझना"
+          },
+          "content": {
+            "en": "Agricultural loans are essential for farmers to grow their business. This module introduces you to the types of agricultural loans, the application process, and how to qualify for financial support for farming activities.",
+            "hi": "कृषि ऋण किसानों के लिए अपने व्यवसाय को बढ़ाने के लिए आवश्यक होते हैं। यह मॉड्यूल आपको कृषि ऋण के प्रकार, आवेदन प्रक्रिया, और कृषि गतिविधियों के लिए वित्तीय समर्थन प्राप्त करने के तरीके से परिचित कराता है।"
+          },
+          "interactiveActivity": {
+            "en": "Research the different types of agricultural loans available in your region and share what you find.",
+            "hi": "अपने क्षेत्र में उपलब्ध विभिन्न प्रकार के कृषि ऋणों का शोध करें और जो आप पाएं उसे साझा करें।"
+          },
+          "learningObjectives": {
+            "en": [
+              "Understand the importance of agricultural loans.",
+              "Learn how to apply for loans and what documents are required.",
+              "Gain insights into loan repayment options."
+            ],
+            "hi": [
+              "कृषि ऋण के महत्व को समझें।",
+              "ऋण के लिए आवेदन करने का तरीका और आवश्यक दस्तावेज़ जानें।",
+              "ऋण चुकौती विकल्पों के बारे में जानें।"
+            ]
+          }
+        }
+      ]
+    },
+    "How to plan a budget?": {
+      "title": {
+        "en": "How to Plan a Budget? A Step-by-Step Guide",
+        "hi": "कैसे बजट बनाएं? एक कदम दर कदम मार्गदर्शिका"
+      },
+      "overallGoal": {
+        "en": "By the end of this module, you will know how to create a budget, manage expenses, and save for future goals.",
+        "hi": "इस मॉड्यूल के अंत तक, आप जानेंगे कि बजट कैसे बनाएं, खर्चों का प्रबंधन कैसे करें, और भविष्य के लक्ष्यों के लिए बचत कैसे करें।"
+      },
+      "sections": [
+        {
+          "title": {
+            "en": "Introduction: The Importance of Budgeting",
+            "hi": "परिचय: बजट बनाने का महत्व"
+          },
+          "content": {
+            "en": "Budgeting is an essential skill for managing your finances. This module will teach you how to create a budget, track your expenses, and ensure that your spending aligns with your goals.",
+            "hi": "बजट बनाना आपके वित्तीय प्रबंधन के लिए एक आवश्यक कौशल है। यह मॉड्यूल आपको बजट बनाने, अपने खर्चों का ट्रैक रखने, और यह सुनिश्चित करने में मदद करेगा कि आपका खर्च आपके लक्ष्यों के अनुरूप हो।"
+          },
+          "interactiveActivity": {
+            "en": "Create a budget for the next month, keeping in mind your income and expenses. Share it with the group.",
+            "hi": "अगले महीने के लिए एक बजट बनाएं, अपनी आय और खर्चों को ध्यान में रखते हुए। इसे समूह के साथ साझा करें।"
+          },
+          "learningObjectives": {
+            "en": [
+              "Understand the basics of budgeting.",
+              "Learn how to track income and expenses.",
+              "Feel confident in planning your finances."
+            ],
+            "hi": [
+              "बजट बनाने की बुनियादी बातें समझें।",
+              "आय और व्यय का ट्रैक रखने का तरीका सीखें।",
+              "अपने वित्तीय योजना में आत्मविश्वास महसूस करें।"
+            ]
+          }
+        }
+      ]
+    },
+    "Managing Debt": {
+      "title": {
+        "en": "Managing Debt: A Guide to Financial Freedom",
+        "hi": "ऋण प्रबंधन: वित्तीय स्वतंत्रता की एक मार्गदर्शिका"
+      },
+      "overallGoal": {
+        "en": "By the end of this module, you will know how to manage debt, reduce financial stress, and create a plan to become debt-free.",
+        "hi": "इस मॉड्यूल के अंत तक, आप जानेंगे कि ऋण का प्रबंधन कैसे करें, वित्तीय तनाव को कम करें, और ऋण मुक्त बनने के लिए एक योजना बनाएं।"
+      },
+      "sections": [
+        {
+          "title": {
+            "en": "Introduction: Overcoming the Burden of Debt",
+            "hi": "परिचय: ऋण के बोझ को कम करना"
+          },
+          "content": {
+            "en": "Managing debt is crucial for achieving financial freedom. This module explains how to prioritize debt repayment, manage multiple debts, and build a plan to eliminate debt over time.",
+            "hi": "ऋण का प्रबंधन वित्तीय स्वतंत्रता प्राप्त करने के लिए महत्वपूर्ण है। यह मॉड्यूल समझाता है कि ऋण भुगतान को प्राथमिकता कैसे दें, कई ऋणों का प्रबंधन कैसे करें, और समय के साथ ऋण को समाप्त करने के लिए एक योजना कैसे बनाएं।"
+          },
+          "interactiveActivity": {
+            "en": "Create a debt repayment plan for yourself and share how you would manage multiple debts.",
+            "hi": "अपने लिए एक ऋण चुकौती योजना बनाएं और साझा करें कि आप कई ऋणों का प्रबंधन कैसे करेंगे।"
+          },
+          "learningObjectives": {
+            "en": [
+              "Understand the importance of managing debt.",
+              "Learn strategies to reduce debt.",
+              "Feel empowered to take control of your finances."
+            ],
+            "hi": [
+              "ऋण का प्रबंधन करने का महत्व समझें।",
+              "ऋण को कम करने की रणनीतियां जानें।",
+              "अपने वित्तीय स्थिति पर नियंत्रण पाने के लिए प्रेरित महसूस करें।"
+            ]
+          }
+        }
+      ]
+    }
+  }
+  
