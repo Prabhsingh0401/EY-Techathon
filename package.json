@@ -17,6 +17,7 @@
     "dotenv": "^16.4.7",
     "express": "^4.21.2",
     "flowbite": "^2.5.2",
+    "html-react-parser": "^5.2.2",
     "lucide-react": "^0.469.0",
     "node-fetch": "^3.3.2",
     "openai": "^4.77.0",
