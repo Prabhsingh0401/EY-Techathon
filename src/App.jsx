@@ -4,9 +4,7 @@ import { Home } from "./components/Home/Home";
 import ChatBotMain from "./components/ChatBotMain/ChatBotMain";
 import VideoMain from "./components/VideoMain/VideoMain";
 import Profile from "./components/Profile/Profile";
-import Profile from "./components/Profile/Profile";
 import Spendly from "./components/BudgettingTool/BudgettingTool";
-import { VideoRoom2 } from "./components/VideoNewPage/VideoRoom2";
 import { VideoRoom2 } from "./components/VideoNewPage/VideoRoom2";
 import LearningPath from "./components/LearningPath/LearningPath";
 function App() {
