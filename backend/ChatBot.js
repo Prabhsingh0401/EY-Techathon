@@ -26,7 +26,7 @@ app.post('/api/chat', async (req, res) => {
       headers: {
         accept: 'application/json',
         'content-type': 'application/json',
-        authorization: 'Bearer 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'
+        authorization: 'Bearer ${import.meta.env.VITE_NVIDIA_API_KEY}'
       },    
       data: {
         model: 'nvidia/nemotron-4-mini-hindi-4b-instruct',

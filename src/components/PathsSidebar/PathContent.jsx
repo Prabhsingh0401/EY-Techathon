@@ -1,22 +1,62 @@
 import React, { useEffect, useState } from 'react';
-import contentData from '../../data/PathContent.json';
+import axios from 'axios';
+import config from './config';
 
 const PathContent = ({ activeItem }) => {
     const [content, setContent] = useState(null);
-    const [language, setLanguage] = useState("en"); // Default language is English
+    const [language, setLanguage] = useState("en");
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
     useEffect(() => {
-        // Set the content for the active item based on selected language
-        setContent(contentData[activeItem]);
-    }, [activeItem, language]); // Re-render when activeItem or language changes
+        const fetchContent = async () => {
+            if (!activeItem) {
+                setLoading(false);
+                return;
+            }
+
+            try {
+                setLoading(true);
+                const response = await axios.get(`${config.apiUrl}/api/content/${activeItem}`);
+                setContent(response.data);
+                setError(null);
+            } catch (err) {
+                setError('Failed to fetch content. Please try again later.');
+                console.error('Error fetching content:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchContent();
+    }, [activeItem]);
+
+    if (loading) {
+        return (
+            <div className="flex-1 p-4 bg-zinc-700/50 ml-10 rounded-lg flex items-center justify-center">
+                <div className="animate-pulse text-gray-400">Loading...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="flex-1 p-4 bg-zinc-700/50 ml-10 rounded-lg">
+                <div className="text-red-500">{error}</div>
+            </div>
+        );
+    }
 
     if (!content) {
-        return <div>Loading...</div>;
+        return (
+            <div className="flex-1 p-4 bg-zinc-700/50 ml-10 rounded-lg flex items-center justify-center">
+                <p className="text-gray-400">Select an item to view content</p>
+            </div>
+        );
     }
 
     const renderSection = (section) => {
-        // Safe check if learningObjectives is an array before using .map()
-        const learningObjectives = Array.isArray(section.learningObjectives) ? section.learningObjectives : [];
+        const learningObjectives = section.learningObjectives[language] || [];
 
         return (
             <div key={section.title[language]} className="mb-6">
@@ -27,19 +67,12 @@ const PathContent = ({ activeItem }) => {
                         <strong>Interactive Activity:</strong> {section.interactiveActivity[language]}
                     </div>
                 )}
-                {section.highlights && Array.isArray(section.highlights) && (
-                    <ul className="list-disc pl-5 mb-2">
-                        {section.highlights.map((item, index) => (
-                            <li key={index}>{item[language]}</li>
-                        ))}
-                    </ul>
-                )}
                 {learningObjectives.length > 0 && (
                     <div>
                         <strong>Learning Objectives:</strong>
                         <ul className="list-disc pl-5">
                             {learningObjectives.map((obj, index) => (
-                                <li key={index}>{obj[language]}</li>
+                                <li key={index}>{obj}</li>
                             ))}
                         </ul>
                     </div>
@@ -48,21 +81,22 @@ const PathContent = ({ activeItem }) => {
         );
     };
 
-    const handleLanguageToggle = () => {
-        // Toggle between English and Hindi
-        setLanguage(language === "en" ? "hi" : "en");
-    };
-
     return (
-        <div className="flex-1 p-4 bg-zinc-700/50 ml-10 rounded-lg shadow-md overflow-auto h-[80vh]" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
-            <h2 className="text-xl font-semibold mb-4">{content.title[language]}</h2>
+        <div
+            className="flex-1 p-4 bg-zinc-700/50 ml-10 rounded-lg shadow-md overflow-auto h-[80vh]"
+            style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
+        >
+            <div className="flex justify-between items-center mb-4">
+                <h2 className="text-xl font-semibold">{content.title[language]}</h2>
+                <button
+                    className="p-2 bg-blue-500 hover:bg-blue-600 text-white rounded transition-colors"
+                    onClick={() => setLanguage(language === "en" ? "hi" : "en")}
+                >
+                    {language === "en" ? "हिंदी पर स्विच करें" : "Switch to English"}
+                </button>
+            </div>
             <p className="mb-6">{content.overallGoal[language]}</p>
-            {content.sections ? content.sections.map(renderSection) : <p>{content.content[language]}</p>}
-            <button 
-                className="mt-4 p-2 bg-blue-500 text-white rounded" 
-                onClick={handleLanguageToggle}>
-                Toggle Language
-            </button>
+            {content.sections?.map(renderSection)}
         </div>
     );
 };

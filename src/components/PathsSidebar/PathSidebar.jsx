@@ -1,29 +1,59 @@
-import React, { useState } from 'react';
+// PathSidebar.jsx
+import React, { useState, useEffect } from 'react';
+import axios from 'axios';
 import PathContent from './PathContent';
+import config from './config';
 
 const PathSidebar = () => {
-    const [activeItem, setActiveItem] = useState("Business Planning");
+    const [activeItem, setActiveItem] = useState(null);
+    const [items, setItems] = useState([]);
+    const [loading, setLoading] = useState(true);
+    const [error, setError] = useState(null);
 
-    const items = [
-        "Business Planning",
-        "Basic Accounting",
-        "Accessing Agricultural Loan",
-        "How to plan a budget?",
-        "Managing Debt"
-    ];
+    useEffect(() => {
+        const fetchItems = async () => {
+            try {
+                const response = await axios.get(`${config.apiUrl}/api/content`);
+                const contentItems = response.data.map(item => item._id);
+                setItems(contentItems);
+                if (contentItems.length > 0) {
+                    setActiveItem(contentItems[0]);
+                }
+                setError(null);
+            } catch (err) {
+                setError('Failed to fetch items. Please try again later.');
+                console.error('Error fetching items:', err);
+            } finally {
+                setLoading(false);
+            }
+        };
+
+        fetchItems();
+    }, []);
+
+    if (loading) {
+        return (
+            <div className="flex h-[80vh] items-center justify-center">
+                <div className="animate-pulse text-gray-400">Loading...</div>
+            </div>
+        );
+    }
+
+    if (error) {
+        return (
+            <div className="m-4 text-red-500">
+                {error}
+            </div>
+        );
+    }
 
     return (
         <div className="flex h-[80vh] relative">
-            {/* Sidebar */}
-            <aside
-                id="default-sidebar"
-                className="relative top-0 left-0 z-40 w-74 h-full transition-transform -translate-x-full sm:translate-x-0"
-                aria-label="Sidebar"
-            >
+            <aside className="relative top-0 left-0 z-40 w-74 h-full transition-transform -translate-x-full sm:translate-x-0">
                 <div className="h-full px-3 py-4 overflow-y-auto backdrop-blur-sm bg-zinc-800/50 rounded-xl">
                     <ul className="space-y-2 font-medium">
                         {items.map((item, index) => (
-                            <li key={index}>
+                            <li key={item}>
                                 <button
                                     className={`flex items-center w-full p-2 text-white-900 rounded-lg hover:bg-zinc-900 dark:hover:bg-gray-700 group ${
                                         activeItem === item ? "bg-zinc-900" : ""
@@ -45,8 +75,6 @@ const PathSidebar = () => {
                     </ul>
                 </div>
             </aside>
-
-            {/* Content Area */}
             <PathContent activeItem={activeItem} />
         </div>
     );
