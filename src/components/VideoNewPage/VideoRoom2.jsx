@@ -17,6 +17,7 @@ const client = AgoraRTC.createClient({
 export const VideoRoom2 = () => {
   const [user, setUser] = useState([]);
   const [isMuted, setIsMuted] = useState(false);
+  const [dateTime, setDateTime] = useState("");
 
   const handleUserJoined = async (user, mediaType) => {
     await client.subscribe(user, mediaType);
@@ -45,7 +46,6 @@ export const VideoRoom2 = () => {
 
   const handleRaiseHand = () => {
     alert("Raise hand functionality is clicked!");
-    // Implement functionality like sending a signal to other users
   };
 
   const leaveChannel = async () => {
@@ -75,10 +75,26 @@ export const VideoRoom2 = () => {
         ]);
         client.publish(tracks);
       });
+
+    const interval = setInterval(() => {
+      const now = new Date();
+      const formattedDate = now.toLocaleDateString("en-US", {
+        weekday: "long",
+        year: "numeric",
+        month: "long",
+        day: "numeric",
+      });
+      const formattedTime = now.toLocaleTimeString("en-US");
+      setDateTime(`${formattedDate}, ${formattedTime}`);
+    }, 1000);
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-100">
+    <div className="flex flex-col items-center justify-center min-h-screen bg-zinc-600">
       <div className="grid grid-cols-2 gap-4 max-w-5xl w-full">
         {user.map((user) => (
           <VideoPlayer2 key={user.uid} user={user} />
@@ -91,22 +107,27 @@ export const VideoRoom2 = () => {
           onClick={toggleMute}
           className={`p-4 rounded-full ${
             isMuted ? "bg-red-500" : "bg-green-500"
-          } text-white shadow-lg hover:scale-110 transition-transform`}
+          } text-black shadow-lg hover:scale-110 transition-transform`}
         >
-          <FontAwesomeIcon icon={faMicrophoneSlash} size="lg" />
+          <FontAwesomeIcon icon={faMicrophoneSlash} size="lg" color="black" />
         </button>
         <button
           onClick={handleRaiseHand}
-          className="p-4 bg-yellow-500 rounded-full text-white shadow-lg hover:scale-110 transition-transform"
+          className="p-4 bg-yellow-500 rounded-full text-black shadow-lg hover:scale-110 transition-transform"
         >
-          <FontAwesomeIcon icon={faHandPaper} size="lg" />
+          <FontAwesomeIcon icon={faHandPaper} size="lg" color="black" />
         </button>
         <button
           onClick={leaveChannel}
-          className="p-4 bg-red-600 rounded-full text-white shadow-lg hover:scale-110 transition-transform"
+          className="p-4 bg-red-600 rounded-full text-black shadow-lg hover:scale-110 transition-transform"
         >
-          <FontAwesomeIcon icon={faPhoneSlash} size="lg" />
+          <FontAwesomeIcon icon={faPhoneSlash} size="lg" color="black" />
         </button>
+      </div>
+
+      {/* Date and Time */}
+      <div className="absolute bottom-6 right-4 bg-gray-800 text-white py-2 px-4 rounded-lg shadow-lg">
+        {dateTime}
       </div>
     </div>
   );
