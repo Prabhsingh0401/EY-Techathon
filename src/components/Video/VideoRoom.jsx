@@ -3,7 +3,7 @@ import React, { useState, useEffect } from "react";
 import AgoraRTC from "agora-rtc-sdk-ng";
 import { VideoPlayer } from "./VideoPlayer";
 const APP_ID='ac2703345eeb4ceb9fe4cade2f598cac';
-const TOKEN='007eJxTYCgRVmI63aNcImv4qjw76If99tuByioOG64fuSD0u2uSx0kFhsRkI3MDY2MT09TUJJPk1CTLtFST5MSUVKM0U0uL5MRk/13l6Q2BjAyGdWtZGBkgEMTnYgjz93R2VXB29PFhYAAA54wgxw==';
+const TOKEN='007eJxTYBCaEnzssVNimFP6O71sx40bLy2Z621y2fmVaZyQ5nmu2FMKDInJRuYGxsYmpqmpSSbJqUmWaakmyYkpqUZpppYWyYnJczbVpzcEMjK0bRRjZWSAQBCfiyHM39PZVcHZ0ceHgQEAA0Qg2Q==';
 const CHANNEL='VOICE CALL';
 const client=AgoraRTC.createClient({
     mode:'rtc',
