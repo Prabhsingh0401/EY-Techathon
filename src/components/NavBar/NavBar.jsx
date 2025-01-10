@@ -34,6 +34,9 @@ const NavBar = () => {
                 <li>
                 <Link to='/Video'><a href="#" class="block py-2 px-3  rounded hover:bg-gray-100 md:hover:bg-transparent md:border-0 md:hover:text-pink-300 md:p-0 dark:text-white md:dark:hover:text-blue-500 dark:hover:bg-gray-700 dark:hover:text-white md:dark:hover:bg-transparent">Community</a></Link>
                 </li>
+                {/* <li>
+                <div id="google_translate_element" style={{ position: "relative", top: 0, right: 0, zIndex: 1000 }}></div>
+                </li> */}
             </ul>
             </div>
         </div>

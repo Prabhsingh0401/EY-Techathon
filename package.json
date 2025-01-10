@@ -20,6 +20,8 @@
     "express": "^4.21.2",
     "flowbite": "^2.5.2",
     "html-react-parser": "^5.2.2",
+    "i18next": "^24.2.1",
+    "i18next-browser-languagedetector": "^8.0.2",
     "lucide-react": "^0.469.0",
     "mongodb": "^6.12.0",
     "mongoose": "^8.9.3",
@@ -27,6 +29,7 @@
     "openai": "^4.77.0",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
+    "react-i18next": "^15.4.0",
     "react-router-dom": "^7.1.1",
     "react-speech-recognition": "^3.10.0",
     "regenerator-runtime": "^0.14.1"
