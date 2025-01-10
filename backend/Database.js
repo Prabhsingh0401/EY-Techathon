@@ -18,7 +18,7 @@ app.use(cors());
 app.use(express.json());
 
 // Connect to MongoDB
-mongoose.connect(process.env.MONGODB_URI, {
+mongoose.connect('mongodb+srv://prableensingh0401:prabhleen0401@learningpath.lm54g.mongodb.net/learningpath?retryWrites=true&w=majority&appName=LearningPath', {
     useNewUrlParser: true,
     useUnifiedTopology: true
 });
