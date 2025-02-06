@@ -111,9 +111,28 @@ const Spendly = () => {
   };
 
   const formatDataToString = () => {
-    const expenseString = `Monthly Income: ₹${formData.total_income}, Housing Expenses: ₹${formData.housing}, Utility Bills: ₹${formData.utilities}, Grocery Spending: ₹${formData.groceries}, Transportation Costs: ₹${formData.transportation}, Entertainment Budget: ₹${formData.entertainment}, Current Savings: ₹${formData.savings}, Miscellaneous Expenses: ₹${formData.miscellaneous}, Savings Goal: ₹${formData.savings_target}`;
+      const totalExpenses =
+          formData.housing +
+          formData.utilities +
+          formData.groceries +
+          formData.transportation +
+          formData.entertainment +
+          formData.miscellaneous;
 
-    return `Please analyze the following monthly budget data and provide specific recommendations: ${expenseString}. Please focus on: 1) Identifying areas of overspending, 2) Suggesting budget reallocations to reach the savings goal of ₹${formData.savings_target}, and 3) Providing practical cost-cutting measures for the next 6 months.`;
+      const remainingIncome = formData.total_income - totalExpenses;
+
+      const monthsRequired = (formData.savings_target - formData.savings) / remainingIncome;
+      const isAchievable = monthsRequired <= 6;
+
+      const expenseString = `Monthly Income: ₹${formData.total_income}, Housing Expenses: ₹${formData.housing}, Utility Bills: ₹${formData.utilities}, Grocery Spending: ₹${formData.groceries}, Transportation Costs: ₹${formData.transportation}, Entertainment Budget: ₹${formData.entertainment}, Current Savings: ₹${formData.savings}, Miscellaneous Expenses: ₹${formData.miscellaneous}, Savings Goal: ₹${formData.savings_target}`;
+
+      const ruralConsiderations = `Consider financial aspects unique to a rural setting, such as lower living costs, reliance on seasonal income, availability of government schemes, and possible side income sources like farming, dairy, or handicrafts. Provide advice on reducing expenses through local markets, cooperative societies, and community-based savings programs.`;
+
+      if (isAchievable) {
+          return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. The savings goal of ₹${formData.savings_target} is achievable within the next 6 months. Provide recommendations on maintaining financial stability and optimizing expense management while reaching the goal. ${ruralConsiderations}`;
+      } else {
+          return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. The savings goal of ₹${formData.savings_target} is NOT achievable within the next 6 months with the current budget. Please suggest rural-specific cost-cutting measures, alternative earning opportunities, and ways to manage essential expenses efficiently while utilizing available resources. ${ruralConsiderations}`;
+      }
   };
 
   const validateForm = () => {
@@ -160,9 +179,9 @@ const Spendly = () => {
   return (
     <div className="min-h-screen flex flex-col">
       <NavBar />
-      <div className="flex gap-8 p-8 mt-[4%] flex-1">
+      <div className="lg:flex gap-8 p-8 lg:mt-[4%] mt-[20%] flex-1">
         {/* Form Section */}
-        <div className="w-[45%]">
+        <div className="lg:w-[45%] w-[95%]">
           <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
             <h1 className="text-3xl font-bold mb-8 bg-gradient-to-r from-green-500 to-green-300 bg-clip-text text-transparent">
               Spendly - AI powered Budgeting Tool
@@ -279,7 +298,7 @@ const Spendly = () => {
 
         {/* Response Section */}
         {(response || isLoading) && (
-          <div className="w-[45%] fixed right-8 top-[20%] max-h-[70vh] overflow-y-auto custom-scrollbar">
+          <div className="lg:w-[50%] w-[95%] lg:relative lg:ml-10 mt-10 lg:mt-0 right-3 top-[20%] max-h-[80vh] overflow-y-auto custom-scrollbar">
             <div className="w-full rounded-lg border border-gray-700 bg-zinc-800/50 backdrop-blur-sm shadow-lg">
               <div className="border-b border-gray-700 p-6 flex items-center justify-between">
                 <h3 className="text-xl font-semibold text-white flex items-center gap-2">

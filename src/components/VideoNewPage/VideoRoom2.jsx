@@ -6,7 +6,7 @@ import { faMicrophoneSlash, faHandPaper, faPhoneSlash } from "@fortawesome/free-
 
 const APP_ID = "ac2703345eeb4ceb9fe4cade2f598cac";
 const TOKEN =
-  "007eJxTYIhbdLxMN0s5Y80Dnik9WW3aU5m107efaZ0Uar1Ptc3zsYECQ2KykbmBsbGJaWpqkklyapJlWqpJcmJKqlGaqaVFcmLyGtbG9IZARobFa++yMjJAIIjPxRDm7+nsquDs6OPDwAAA1vwgmw==";
+  "007eJxTYHBYwV+bVifDPy92jnfSSRnvg0H1QcbLtWN73FW89OMfflZgSEw2MjcwNjYxTU1NMklOTbJMSzVJTkxJNUoztbRITkwW27UgvSGQkeGk2WVWRgYIBPG5GML8PZ1dFZwdfXwYGABKeR8T";
 const CHANNEL = "VOICE CALL";
 
 const client = AgoraRTC.createClient({

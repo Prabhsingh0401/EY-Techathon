@@ -118,7 +118,7 @@ const ChatBot = ({ onClose }) => {
   }
 
   return (
-    <div className="fixed top-[15%] right-10 bottom-0 w-[32rem] z-50 bg-zinc-800/50 bg-opacity-50 backdrop-blur-sm shadow-lg rounded-lg flex flex-col p-4 h-[83vh] overflow-hidden">
+    <div className="fixed top-[15%] mt-[25vh] lg:mt-0 right-10 bottom-0 w-[32rem] z-50 bg-zinc-800/50 bg-opacity-50 backdrop-blur-sm shadow-lg rounded-lg flex flex-col p-4 h-[55vh] lg:h-[83vh] overflow-hidden">
       <div className="flex-grow overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
         <ChatHistory chatHistory={chatHistory} />
       </div>

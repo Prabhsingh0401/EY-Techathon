@@ -1,10 +1,9 @@
-// backend/routes/content.js
 import express from 'express';
 import Content from '../models/content.js';
+import User from '../models/user.js';
 
 const router = express.Router();
 
-// Get all content
 router.get('/', async (req, res) => {
     try {
         const content = await Content.find();
@@ -14,7 +13,6 @@ router.get('/', async (req, res) => {
     }
 });
 
-// Get specific content by ID
 router.get('/:id', async (req, res) => {
     try {
         const content = await Content.findById(req.params.id);
@@ -26,6 +24,8 @@ router.get('/:id', async (req, res) => {
     } catch (err) {
         res.status(500).json({ message: err.message });
     }
+
+    
 });
 
 export default router;

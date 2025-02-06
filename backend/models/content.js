@@ -1,4 +1,3 @@
-// backend/models/Content.js
 import mongoose from 'mongoose';
 
 const sectionSchema = new mongoose.Schema({

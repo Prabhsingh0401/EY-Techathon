@@ -13,7 +13,7 @@ export function Gallery() {
 
   return (
     <>
-    <div className="md:opacity-1 opacity-10 absolute z-[10] mt-[60vh]">
+    <div className="md:opacity-1 lg:opacity-10 opacity-0 absolute z-[10] mt-[60vh]">
       <div className="flex lg:right-0 ml-[20vw] lg:ml-[50vw] justify-between w-[100vw] lg:w-[36vw] h-[130vh] lg:h-[150vh] overflow-hidden ">
         <div className="flex flex-col p-[1vw] mt-10">
           {leftImages.map((image, index) => (

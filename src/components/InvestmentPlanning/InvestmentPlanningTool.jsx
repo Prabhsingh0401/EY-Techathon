@@ -100,9 +100,8 @@ const InvestiMate = () => {
   return (
     <>
     <NavBar/>
-    <div className="flex gap-8 p-8 mt-8 flex-1">
-      {/* Form Section */}
-      <div className="w-[46%]">
+    <div className="lg:flex gap-8 p-8 mt-8 flex-1">
+      <div className="lg:w-[46%]">
         <form onSubmit={(e) => e.preventDefault()} className="space-y-6">
           <h1 className="text-3xl font-bold mt-10 mb-1 bg-gradient-to-r from-pink-500 to-purple-900 bg-clip-text text-transparent">
             InvestiMate - Investment Planning Tool 
@@ -174,7 +173,7 @@ const InvestiMate = () => {
 
       {/* Response Section */}
       {(response || isLoading) && (
-        <div className="w-[45%] absolute right-8 top-[20%] max-h-[70vh] overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
+        <div className="lg:w-[45%] lg:absolute right-8 top-[10%] mt-10 lg:mt-0 max-h-[75vh] overflow-y-auto" style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}>
           <div className="w-full rounded-lg border border-gray-700 bg-zinc-800/50 backdrop-blur-sm shadow-lg">
             <div className="border-b border-gray-700 p-6 flex items-center justify-between">
               <h3 className="text-xl font-semibold text-white">Your personlised Investment Plan</h3>
