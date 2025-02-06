@@ -55,22 +55,22 @@ const LandingPage = () => {
     return (
         <div className="flex items-center justify-center">
             <Gallery />
-            <div className="absolute z-10 w-[90vw] lg:w-[68vw] bg-zinc-800 h-[70vh] rounded-3xl top-[15%] lg:flex justify-center items-center">
+            <div className="absolute z-10 w-[90vw] lg:w-[68vw] bg-zinc-800 h-[80vh] rounded-3xl top-[10%] lg:top-[15%] lg:flex justify-center items-center">
                 <div className="lg:w-[30vw] lg:bg-transparent bg-gray-700 flex items-center justify-center h-[35vh] lg:h-[60vh] rounded-3xl">
                     <img src="/IconSmall.png" className="h-16" alt="MoneyMitra Logo" />
                     <h1 className="text-4xl font-extrabold ml-2 text-white">Money Mitra</h1>
                 </div>
                 <div className="lg:w-[30vw] ml-5 mr-5 lg:ml-10 lg:h-[60vh]">
-                    <div className="flex justify-start mb-4 space-x-2 mt-5">
+                       <div className="flex justify-start mb-4 space-x-2 mt-5">
                         <button 
                             onClick={() => setLanguage('english')}
-                            className={`px-24 lg:px-16 py-2 rounded ${language === 'english' ? 'bg-blue-600 text-white' : 'bg-gray-600'}`}
+                            className={`px-12 lg:px-16 py-2 rounded ${language === 'english' ? 'bg-blue-600 text-white' : 'bg-gray-600'}`}
                         >
                             English
                         </button>
                         <button 
                             onClick={() => setLanguage('hindi')}
-                            className={`px-28 lg:px-20 py-2 rounded ${language === 'hindi' ? 'bg-blue-600 text-white' : 'bg-gray-600'}`}
+                            className={`px-12 lg:px-20 py-2 rounded ${language === 'hindi' ? 'bg-blue-600 text-white' : 'bg-gray-600'}`}
                         >
                             हिंदी
                         </button>
