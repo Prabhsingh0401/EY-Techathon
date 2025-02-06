@@ -55,8 +55,8 @@ const LandingPage = () => {
     return (
         <div className="flex items-center justify-center">
             <Gallery />
-            <div className="absolute z-10 w-[90vw] lg:w-[68vw] bg-zinc-800 h-[80vh] rounded-3xl top-[10%] lg:top-[15%] lg:flex justify-center items-center">
-                <div className="lg:w-[30vw] lg:bg-transparent bg-gray-700 flex items-center justify-center h-[35vh] lg:h-[60vh] rounded-3xl">
+            <div className="absolute z-10 w-[90vw] lg:w-[68vw] bg-zinc-800 h-[80vh] rounded-3xl top-[8%] lg:top-[15%] lg:flex justify-center items-center">
+                <div className="lg:w-[30vw] lg:bg-transparent bg-gray-700 flex items-center justify-center h-[32vh] lg:h-[60vh] rounded-3xl">
                     <img src="/IconSmall.png" className="h-16" alt="MoneyMitra Logo" />
                     <h1 className="text-4xl font-extrabold ml-2 text-white">Money Mitra</h1>
                 </div>
