@@ -30,7 +30,7 @@ const TutorialPage = () => {
         ref={videoRef}
         autoPlay
         playsInline
-        className="w-full h-full object-cover"
+        className="w-[900px] h-[500px]"
         controls
       >
         <source src="/MoneyMitraTutorialVideo.mp4" type="video/mp4" />
