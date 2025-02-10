@@ -9,14 +9,40 @@ const app = express();
 const port = process.env.PORT || 5000;
 
 app.use(cors());
-
 app.use(express.json());
+
+// Function to check if the message is finance-related
+const isFinanceRelated = (message) => {
+  const financeKeywords = [
+    'finance', 'money', 'investment', 'stock', 'market', 'banking', 
+    'savings', 'budget', 'economy', 'financial', 'revenue', 'profit', 
+    'expense', 'capital', 'trade', 'asset', 'wealth', 'portfolio', 
+    'income', 'loan', 'debt', 'credit', 'mortgage', 'insurance', 
+    'entrepreneurship', 'startup', 'business plan', 'funding', 
+    'financial literacy', 'financial planning', 'economic', 
+    'investment strategy', 'personal finance', 'financial goal', 
+    'financial education' , 'business'
+  ];
+
+  const lowercaseMessage = message.toLowerCase();
+
+  return financeKeywords.some(keyword => 
+    lowercaseMessage.includes(keyword)
+  );
+};
 
 app.post('/api/chat', async (req, res) => {
   const userMessage = req.body.message;
 
   if (!userMessage) {
     return res.status(400).send({ error: 'Message is required.' });
+  }
+
+  // Check if the message is finance-related
+  if (!isFinanceRelated(userMessage)) {
+    return res.status(400).send({ 
+      error: 'Sorry, I can only assist with finance-related queries. Please ask a question about finance, business, investment, or economic topics.' 
+    });
   }
 
   try {
@@ -44,15 +70,12 @@ app.post('/api/chat', async (req, res) => {
       },
     };
 
-    // Make the API call to NVIDIA's model using Axios
     const response = await axios.request(options);
 
-    // Send the response back to the client
     return res.status(200).json({ message: response.data.choices[0].message.content });
   } catch (error) {
     console.error("Error in chat request:", error);
 
-    // Send detailed error information
     return res.status(500).send({
       error: `Internal Server Error: ${error.message}`,
       details: error.response?.data || 'No details available',
@@ -60,7 +83,6 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-// Start the server
 app.listen(port, () => {
   console.log(`Server is running on port ${port}`);
 });

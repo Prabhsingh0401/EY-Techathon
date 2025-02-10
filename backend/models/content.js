@@ -32,6 +32,6 @@ const contentSchema = new mongoose.Schema({
     sections: [sectionSchema]
 });
 
-const Content = mongoose.model('Content', contentSchema);
+const Content = mongoose.model('contents', contentSchema);
 
 export default Content;

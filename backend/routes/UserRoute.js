@@ -1,9 +1,9 @@
 import express from 'express';
 import User from '../models/user.js';
 
-const router = express.Router();
+const userRouter = express.Router();
 
-router.post('/register', async (req, res) => {
+userRouter.post('/register', async (req, res) => {
     try {
         const { name, age, state } = req.body;
 
@@ -26,7 +26,7 @@ router.post('/register', async (req, res) => {
     }
 });
 
-router.get('/', async (req, res) => {
+userRouter.get('/', async (req, res) => {
     try {
         const users = await User.find().lean();
         res.status(200).json(users);
@@ -35,4 +35,4 @@ router.get('/', async (req, res) => {
     }
 });
 
-export default router;
+export default userRouter;

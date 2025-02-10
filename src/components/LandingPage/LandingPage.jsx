@@ -113,7 +113,7 @@ const LandingPage = () => {
                                 name="state"
                                 value={formData.state}
                                 onChange={(e) => setFormData({ ...formData, state: e.target.value })}
-                                className="w-full p-2 rounded bg-zinc-700/20 text-white border border-zinc-600 focus:outline-none focus:border-blue-500"
+                                className="w-full p-2 rounded bg-zinc-700/90 text-white border border-zinc-600 focus:outline-none focus:border-blue-500"
                                 required
                             >
                                 <option value="">Select your state</option>

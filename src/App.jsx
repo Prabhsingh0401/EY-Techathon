@@ -11,6 +11,7 @@ import InvestiMate from "./components/InvestmentPlanning/InvestmentPlanningTool"
 import LandingPage from "./components/LandingPage/LandingPage";
 import TutorialPage from "./components/TutorialPage/TutorialPage";
 import ChatApp from "./components/ChatApp/ChatApp";
+import AIPaths from "./components/AILearningPath/AILearningPath";
 
 function App() {
   return (
@@ -28,6 +29,7 @@ function App() {
           <Route path="/InvestiMate" element={<InvestiMate />} />
           <Route path="/Tutorial" element={<TutorialPage />} />
           <Route path="/ChatApp" element={<ChatApp />} />
+          <Route path="/Paths" element={<AIPaths />} />
         </Routes>
       </Router>
     </div>
