@@ -79,22 +79,42 @@ const Spendly = () => {
         formData.miscellaneous;
 
     const remainingIncome = formData.total_income - totalExpenses;
+    const currentSavings = formData.savings;
+    const savingsTarget = formData.savings_target;
 
-    const monthsRequired = (formData.savings_target - formData.savings) / remainingIncome;
+    // Check if target is already met with current savings
+    if (currentSavings >= savingsTarget) {
+        return `Budget Analysis:
+- Current Savings: ₹${currentSavings}
+- Target: ₹${savingsTarget}
+- Status: Already achieved
 
-    const isAchievable = monthsRequired <= 6;
-
-    const expenseString = `Monthly Income: ₹${formData.total_income}, Housing Expenses: ₹${formData.housing}, Utility Bills: ₹${formData.utilities}, Grocery Spending: ₹${formData.groceries}, Transportation Costs: ₹${formData.transportation}, Entertainment Budget: ₹${formData.entertainment}, Current Savings: ₹${formData.savings}, Miscellaneous Expenses: ₹${formData.miscellaneous}, Savings Goal: ₹${formData.savings_target}`;
-
-    const ruralConsiderations = `Consider financial aspects unique to a rural setting, such as lower living costs, reliance on seasonal income, government schemes, and possible side income sources like farming, dairy, or handicrafts. Provide advice on reducing expenses through local markets, cooperative societies, and community-based savings programs.`;
-
-    if (isAchievable) {
-        const achievableResponse = `The savings goal of ₹${formData.savings_target} is achievable within the next 6 months. Please provide recommendations on how to reduce the time frame through minor adjustments, such as cutting down on discretionary expenses, bulk buying essentials, or negotiating utility bills for discounts. ${ruralConsiderations}`;
-        return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. ${achievableResponse}`;
-    } else {
-        const notAchievableResponse = `The savings goal of ₹${formData.savings_target} is NOT achievable within the next 6 months with the current budget. Please provide recommendations on reducing costs, exploring alternative earning opportunities, and leveraging available rural resources. Suggestions could include cutting back on non-essential expenses, using public transportation more, leveraging local markets for cheaper groceries, or accessing government programs for financial assistance. ${ruralConsiderations}`;
-        return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. ${notAchievableResponse}`;
+Key Actions:
+1. Maintain current savings
+2. Consider investing excess funds
+3. Set new savings target`;
     }
+
+    const monthsRequired = (savingsTarget - currentSavings) / remainingIncome;
+    const monthlyShortfall = monthsRequired > 6 ? 
+        ((savingsTarget - currentSavings) / 6) - remainingIncome : 0;
+
+    return `Budget Analysis:
+- Monthly Income: ₹${formData.total_income}
+- Total Expenses: ₹${totalExpenses}
+- Monthly Savings: ₹${remainingIncome}
+- Time to Goal: ${monthsRequired.toFixed(1)} months
+
+${monthsRequired <= 6 ? 
+`Quick Wins:
+1. Cut ₹${Math.round(formData.entertainment * 0.3)} from entertainment
+2. Reduce groceries by ₹${Math.round(formData.groceries * 0.2)}
+3. Save ₹${Math.round(formData.utilities * 0.15)} on utilities` :
+`Required Changes:
+1. Need extra ₹${Math.round(monthlyShortfall)} monthly
+2. Cut entertainment by 50%
+3. Use local markets for groceries
+4. Consider side income`}`;
 };
 
   const validateForm = () => {

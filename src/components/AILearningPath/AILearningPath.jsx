@@ -147,83 +147,57 @@ const LearnPath = () => {
 
   
   const formatDataToString = () => {
-    return `Respond strictly in ${formData.preferred_language}. Do not use English. 
-    Do not add any introductory or conclusive message. Only provide the structured learning path.
-    
-    Tailor a step-by-step learning path for:
-    - Language of Instruction: ${formData.preferred_language}
-    - Location Context: ${formData.location}
-    - Age Group: ${formData.age} years old
-    - Experience Level: ${formData.learning_path_type}
-    - Specific Learning Goal: ${formData.learning_topic}
-    
-    Detailed Learning Roadmap Requirements:
-    1. Provide a structured learning curriculum with clear, actionable steps
-    2. Include a mix of free and affordable learning resources
-    3. Break down the learning path into specific modules
-    4. Offer practical exercises and real-world application techniques
-    5. Consider local resources and opportunities specific to ${formData.location}
-    6. Adapt complexity to the learner's age and experience level
-    
-    Recommended Learning Modules:
-    1. Business Fundamentals
-       - Understanding basic business concepts
-       - Types of business structures
-       - Basic financial literacy
-       - Market research techniques
-    
-    2. Business Ideation and Validation
-       - Identifying viable business ideas
-       - Conducting local market research
-       - Understanding customer needs
-       - Developing a basic business concept
-    
-    3. Financial Planning
-       - Basic accounting principles
-       - Budget creation
-       - Understanding startup costs
-       - Local funding and support options in ${formData.location}
-    
-    4. Legal and Regulatory Knowledge
-       - Business registration process
-       - Necessary licenses and permits
-       - Local government regulations
-       - Tax considerations for young entrepreneurs
-    
-    5. Skill Development
-       - Communication skills
-       - Basic digital marketing
-       - Networking techniques
-       - Problem-solving and decision-making
-    
-    6. Practical Implementation
-       - Creating a simple business plan
-       - Basic financial projections
-       - Minimum viable product (MVP) development
-       - Initial marketing strategies
-    
-    Learning Resource Recommendations:
-    - Free online courses
-    - Local government entrepreneurship programs
-    - Mentorship opportunities
-    - Skill development workshops
-    - Digital learning platforms
-    - Local business networks
-    
-    Special Considerations:
-    - Provide resources in ${formData.preferred_language}
-    - Offer context-specific examples from ${formData.location}
-    - Adapt complexity for a ${formData.age}-year-old learner
-    - Focus on low-cost, high-impact learning methods
-    
-    Delivery Format:
-    - Provide a week-by-week learning breakdown
-    - Include estimated time commitment
-    - Suggest practical assignments
-    - Offer motivational guidance
-    - Provide clear learning objectives for each module
-    `;
-};
+    return `Output strictly in ${formData.preferred_language}. Generate only bulleted points.
+
+    Format:
+    - Week [number]: [topic]
+      - Specific task/learning
+      - Resource link/name
+      - Practical exercise
+      - Time required: [X] hours
+
+    Learning path for:
+    - Language: ${formData.preferred_language}
+    - Location: ${formData.location}
+    - Age: ${formData.age}
+    - Level: ${formData.learning_path_type}
+    - Goal: ${formData.learning_topic}
+
+    Required output structure:
+    1. Core Learning Modules:
+      • Week-wise breakdown
+      • Direct resource links
+      • Practical tasks
+      • Time estimates
+
+    2. Local Resources:
+      • Community programs in ${formData.location}
+      • Local training centers
+      • Regional business support
+      • Nearby mentorship options
+
+    3. Free Learning Sources:
+      • Online platforms
+      • Government resources
+      • Community programs
+      • Educational videos
+
+    4. Implementation Steps:
+      • Daily actions
+      • Weekly goals
+      • Monthly targets
+      • Progress metrics
+
+    Constraints:
+    - No explanatory text
+    - Only bullet points
+    - Direct resource links
+    - Location-specific content
+    - Age-appropriate (${formData.age} years)
+    - ${formData.preferred_language} resources only
+    - Focus on practical steps
+    - Include time estimates`;
+    };
 
   const validateForm = () => {
     const fields = Object.entries(formData);

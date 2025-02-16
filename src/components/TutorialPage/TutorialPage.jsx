@@ -24,8 +24,12 @@ const TutorialPage = () => {
     };
   }, [navigate]);
 
+  const handleSkip = () => {
+    navigate("/Home");
+  };
+
   return (
-    <div className="w-screen h-screen flex items-center justify-center bg-black">
+    <div className="w-screen h-screen flex items-center justify-center bg-black relative">
       <video
         ref={videoRef}
         autoPlay
@@ -36,6 +40,14 @@ const TutorialPage = () => {
         <source src="/MoneyMitraTutorialVideo.mp4" type="video/mp4" />
         Your browser does not support the video tag.
       </video>
+      
+      {/* Skip Button */}
+      <button
+        onClick={handleSkip}
+        className="absolute top-4 right-4 px-6 py-2 bg-blue-600 text-white font-semibold rounded-full hover:bg-blue-700 transition-colors duration-200 shadow-lg"
+      >
+        Skip Video
+      </button>
     </div>
   );
 };

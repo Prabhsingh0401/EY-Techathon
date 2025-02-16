@@ -55,8 +55,76 @@ const InvestiMate = () => {
   };
 
   const formatDataToString = () => {
-    return `Please suggest the best investment plan based on the following details: Initial Investment: ₹${formData.initial_investment}, Monthly Contribution: ₹${formData.monthly_investment}, Investment Period: ${formData.investment_period} years, Risk Tolerance: ${formData.risk_tolerance}, Goal Amount: ₹${formData.goal_amount}. Provide specific plans and expected returns.`;
-  };
+    const getRiskBasedOptions = () => {
+        switch(formData.risk_tolerance.toLowerCase()) {
+            case 'high':
+                return `Investment Mix Based on High Risk Comfort:
+                - Higher Return Options (60-70%):
+                  - Stock market through mutual funds
+                  - Small business investments
+                  - Trading options
+                  - New company shares
+                  
+                - Medium Risk Options (20-30%):
+                  - Company deposits
+                  - Gold investments
+                  - Property investment plans
+                  
+                - Safe Options (10-20%):
+                  - Post office savings
+                  - Bank FDs`;
+
+                            case 'medium':
+                                return `Investment Mix Based on Medium Risk Comfort:
+                - Medium Risk Options (40-50%):
+                  - Good company shares
+                  - Gold investments
+                  - Company deposits
+                  
+                - Safe Options (50-60%):
+                  - Bank deposits
+                  - Post office schemes
+                  - Government bonds`;
+
+                            default: // Low risk
+                                return `Investment Mix Based on Low Risk Comfort:
+                - Safe Options (80-90%):
+                  - Post office savings
+                  - Bank FDs
+                  - Government schemes
+                  
+                - Medium Risk Options (10-20%):
+                  - Good company deposits
+                  - Gold savings`;
+                        }
+                    };
+
+                    return `Simple investment plan for:
+                - Starting money: ₹${formData.initial_investment}
+                - Monthly saving: ₹${formData.monthly_investment}
+                - Time period: ${formData.investment_period} years
+                - Risk comfort: ${formData.risk_tolerance}
+                - Target amount: ₹${formData.goal_amount}
+
+                ${getRiskBasedOptions()}
+
+                How to Start:
+                - Where to go
+                - Required papers
+                - First steps
+                - Expected returns
+
+                Government Help:
+                - Available schemes
+                - Special programs
+                - Local options
+
+                Rules:
+                - Use simple words
+                - Give local examples
+                - Show practical steps
+                - Explain all risks clearly`;
+                };
 
   const validateForm = () => {
     const fields = Object.entries(formData);
