@@ -20,8 +20,7 @@ export const VideoRoom=()=>{
 
 
   }
-
-
+  
   };
   const handleUserLeft=(user)=>{
   setUser((previousUser)=>

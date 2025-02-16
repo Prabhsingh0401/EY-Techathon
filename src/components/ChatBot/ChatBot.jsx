@@ -4,16 +4,40 @@ import axios from "axios";
 import { SendButton } from "../ChatBotSendButton/ChatBotSendButton";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Mic, MicOff } from 'lucide-react';
+import parse from 'html-react-parser';
 
 axios.defaults.baseURL = "http://localhost:5000";
 
-// ChatHistory Component
 const ChatHistory = ({ chatHistory }) => {
   const endOfMessagesRef = useRef(null);
 
   useEffect(() => {
     endOfMessagesRef.current?.scrollIntoView({ behavior: "smooth" });
   }, [chatHistory]);
+
+  // Function to process text formatting
+  const processText = (text) => {
+    if (!text) return null;
+
+    const paragraphs = text.split('\n');
+
+    return paragraphs.map((paragraph, index) => {
+      if (!paragraph.trim()) return null;
+
+      const processedText = paragraph
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>') // Bold
+        .replace(/\*(.*?)\*/g, '<em>$1</em>') // Italic
+        .replace(/₹(\d+(?:,\d+)*(?:\.\d+)?)/g, '<span class="whitespace-nowrap">₹$1</span>') // Currency formatting
+        .replace(/(\d+(?:,\d+)*(?:\.\d+)?)/g, '<span class="whitespace-nowrap">$1</span>') // Number formatting
+        .replace(/(!important|!note|note:|important:)/gi, '<strong class="text-blue-500">$1</strong>'); // Highlight special keywords
+
+      return (
+        <div key={index} className="mb-4 last:mb-0 leading-relaxed">
+          {parse(processedText)}
+        </div>
+      );
+    });
+  };
 
   return (
     <div className="flex flex-col gap-2 overflow-y-auto">
@@ -26,10 +50,7 @@ const ChatHistory = ({ chatHistory }) => {
               : "bg-[#4CAF50] text-white self-end"
           }`}
         >
-          {/* Render the bot's message with HTML formatting */}
-          <div
-            dangerouslySetInnerHTML={{ __html: entry.message }}
-          />
+          {processText(entry.message)}
         </div>
       ))}
       <div ref={endOfMessagesRef} />
@@ -37,7 +58,6 @@ const ChatHistory = ({ chatHistory }) => {
   );
 };
 
-// ChatBot Component
 const ChatBot = ({ onClose }) => {
   const [userInput, setUserInput] = useState("");
   const [chatHistory, setChatHistory] = useState([]);

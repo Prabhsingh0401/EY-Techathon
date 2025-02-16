@@ -7,6 +7,7 @@ const LandingPage = () => {
     const [formData, setFormData] = useState({ name: "", age: "", state: "" });
     const [language, setLanguage] = useState("english");
     const [errorMessage, setErrorMessage] = useState("");
+    const [showKeyboard, setShowKeyboard] = useState(false);
 
     const indianStates = [ "Andhra Pradesh", "Arunachal Pradesh", "Assam", "Bihar", "Chhattisgarh",
         "Delhi", "Goa", "Gujarat", "Haryana", "Himachal Pradesh", "Jharkhand", "Karnataka",
@@ -38,17 +39,28 @@ const LandingPage = () => {
             const data = await response.json();
 
             if (response.status === 201) {
+                localStorage.setItem("userInfo", JSON.stringify({
+                    name: formData.name,
+                    state: formData.state
+                }));
                 alert("Registration successful!");
                 navigate("/Tutorial");
             } else if (response.status === 409) {
+                localStorage.setItem("userInfo", JSON.stringify({
+                    name: formData.name,
+                    state: formData.state
+                }));
                 alert("User already registered! Redirecting...");
                 navigate("/Tutorial");
             } else {
                 setErrorMessage(data.error || "Something went wrong.");
             }
         } catch (error) {
-            // Store user as guest in localStorage if backend fails
             localStorage.setItem("guestUser", JSON.stringify(formData));
+            localStorage.setItem("userInfo", JSON.stringify({
+                name: formData.name,
+                state: formData.state
+            }));
             alert("Network issue! Registered as Guest.");
             navigate("/Tutorial");
         }
@@ -57,8 +69,8 @@ const LandingPage = () => {
     return (
         <div className="flex items-center justify-center">
             <Gallery />
-            <div className="absolute z-10 w-[90vw] lg:w-[68vw] bg-zinc-800 lg:h-[75vh] h-[83vh] rounded-3xl top-[8%] lg:top-[15%] lg:flex justify-center items-center">
-                <div className="lg:w-[30vw] lg:bg-transparent bg-gray-700 flex items-center justify-center h-[32vh] lg:h-[60vh] rounded-3xl">
+            <div className="absolute z-10 w-[90vw] lg:w-[90vw] bg-zinc-800 lg:h-[75vh] h-[83vh] rounded-3xl top-[8%] lg:top-[15%] lg:flex justify-center items-center">
+                <div className="lg:w-[22vw] lg:bg-transparent bg-gray-700 flex items-center justify-center h-[32vh] lg:h-[60vh] rounded-3xl">
                     <img src="/IconSmall.png" className="h-16" alt="MoneyMitra Logo" />
                     <h1 className="text-4xl font-extrabold ml-2 text-white">Money Mitra</h1>
                 </div>
@@ -76,13 +88,14 @@ const LandingPage = () => {
                         >
                             हिंदी
                         </button>
+                        <div id="google_translate_element" style={{ position: "absolute", width: "0%", height: "80%", zIndex: 1000, marginLeft: "31%"}}></div>
                     </div>
 
                     {errorMessage && (
                         <p className="text-red-500 text-sm mb-3">{errorMessage}</p>
                     )}
 
-                    <form onSubmit={handleSubmit} className="space-y-4">
+                    <form onSubmit={handleSubmit} className="space-y-4 mt-1">
                         <div>
                             <label className="block text-white mb-1">{translations[language].name}</label>
                             <input
@@ -93,6 +106,7 @@ const LandingPage = () => {
                                 className="w-full p-2 rounded bg-zinc-700/20 text-white border border-zinc-600 focus:outline-none focus:border-blue-500"
                                 required
                             />
+                            <h1>Download keyboard to type in your regional language</h1>
                         </div>
 
                         <div>

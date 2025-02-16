@@ -7,6 +7,7 @@ import SubmitButtonInvestiMate from "../InvestmentPlanning/FormSubmitButton";
 import SpeechRecognition, { useSpeechRecognition } from 'react-speech-recognition';
 import { Mic, MicOff, Download } from 'lucide-react';
 import jsPDF from 'jspdf';
+import VideoGrid from "../LearningVideosGrid/LearningVideoGrid";
 
 const ResponseDisplay = ({ text }) => {
   if (!text) return null;
@@ -375,6 +376,10 @@ const LearnPath = () => {
           >
           </SubmitButtonInvestiMate>
 
+          <h1 className="text-xl font-bold mt-10 mb-1 bg-gradient-to-r from-green-500 to-purple-900 bg-clip-text text-transparent">
+            Scroll down for more resources !!
+          </h1>
+
           {errorMessage && (
             <div className="mt-4 p-3 bg-red-500/10 border border-red-500/20 rounded-lg">
               <p className="text-red-400 text-sm">{errorMessage}</p>
@@ -418,6 +423,7 @@ const LearnPath = () => {
         </div>
       )}
     </div>
+    <VideoGrid></VideoGrid>
     <Footer/>
     </>
   );

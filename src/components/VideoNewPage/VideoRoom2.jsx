@@ -125,7 +125,6 @@ export const VideoRoom2 = () => {
         </button>
       </div>
 
-      {/* Date and Time */}
       <div className="absolute bottom-6 right-4 bg-gray-800 text-white py-2 px-4 rounded-lg shadow-lg">
         {dateTime}
       </div>

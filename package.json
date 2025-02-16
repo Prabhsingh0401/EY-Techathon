@@ -34,7 +34,9 @@
     "react-dom": "^18.3.1",
     "react-i18next": "^15.4.0",
     "react-router-dom": "^7.1.1",
+    "react-simple-keyboard": "^3.8.45",
     "react-speech-recognition": "^3.10.0",
+    "recharts": "^2.15.1",
     "regenerator-runtime": "^0.14.1",
     "socket.io": "^4.8.1",
     "socket.io-client": "^4.8.1"

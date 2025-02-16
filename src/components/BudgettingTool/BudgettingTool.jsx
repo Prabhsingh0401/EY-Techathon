@@ -2,88 +2,36 @@ import React, { useState } from "react";
 import axios from "axios";
 import NavBar from "../NavBar/NavBar";
 import SubmitButton from "./FormSubmitButton";
-import Footer from "../Footer/Footer";
+import { PieChart, Pie, Cell, Tooltip, Legend } from "recharts";
+import parse from 'html-react-parser';
 
 const ResponseDisplay = ({ text }) => {
   if (!text) return null;
 
   const processText = (text) => {
-    return text
-      .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
-      .replace(/\*(.*?)\*/g, '<em>$1</em>')
-      .replace(/₹(\d+(?:,\d+)*(?:\.\d+)?)/g, '<span style="white-space: nowrap">₹$1</span>')
-      .replace(/(\d+(?:,\d+)*(?:\.\d+)?)/g, '<span style="white-space: nowrap">$1</span>')
-      .replace(/(!important|!note|note:|important:)/gi, '<strong>$1</strong>');
+    const paragraphs = text.split('\n');
+    
+    return paragraphs.map((paragraph, index) => {
+      if (!paragraph.trim()) return null;
+      
+      const processedText = paragraph
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/₹(\d+(?:,\d+)*(?:\.\d+)?)/g, '<span class="whitespace-nowrap">₹$1</span>')
+        .replace(/(\d+(?:,\d+)*(?:\.\d+)?)/g, '<span class="whitespace-nowrap">$1</span>')
+        .replace(/(!important|!note|note:|important:)/gi, '<strong class="text-blue-500">$1</strong>');
+
+      return (
+        <div key={index} className="mb-4 last:mb-0 leading-relaxed">
+          {parse(processedText)}
+        </div>
+      );
+    });
   };
 
-  const sections = text.split(/(?=\*\*[A-Za-z\s]+:\*\*)/g);
-
   return (
-    <div className="space-y-6">
-      {sections.map((section, index) => {
-        if (!section.trim()) return null;
-
-        if (section.startsWith('**')) {
-          const [header, ...content] = section.split('\n');
-          return (
-            <div key={index} className="mb-6">
-              <div
-                className="font-semibold text-lg mb-4"
-                dangerouslySetInnerHTML={{
-                  __html: processText(header)
-                }}
-              />
-              {content.length > 0 && (
-                <div className="space-y-4">
-                  {content.map((item, idx) => {
-                    const trimmedItem = item.trim();
-                    if (!trimmedItem) return null;
-
-                    const pointMatch = trimmedItem.match(/^\*\*(\d+)\.\*\*/);
-                    if (pointMatch) {
-                      const [, number] = pointMatch;
-                      const pointContent = trimmedItem.replace(/^\*\*\d+\.\*\*/, '').trim();
-                      return (
-                        <div key={idx} className="flex items-start gap-3">
-                          <div className="flex-shrink-0">
-                            <span className="font-bold">{number}.</span>
-                          </div>
-                          <div
-                            className="flex-1 leading-relaxed"
-                            dangerouslySetInnerHTML={{
-                              __html: processText(pointContent)
-                            }}
-                          />
-                        </div>
-                      );
-                    }
-
-                    return (
-                      <div
-                        key={idx}
-                        className="leading-relaxed"
-                        dangerouslySetInnerHTML={{
-                          __html: processText(trimmedItem)
-                        }}
-                      />
-                    );
-                  })}
-                </div>
-              )}
-            </div>
-          );
-        }
-
-        return (
-          <div
-            key={index}
-            className="leading-relaxed"
-            dangerouslySetInnerHTML={{
-              __html: processText(section)
-            }}
-          />
-        );
-      })}
+    <div className="space-y-2">
+      {processText(text)}
     </div>
   );
 };
@@ -100,6 +48,17 @@ const Spendly = () => {
     miscellaneous: "",
     savings_target: "",
   });
+
+  const data = Object.keys(formData)
+    .filter((key) => key !== "total_income" && key !== "savings_target") 
+    .map((key) => ({
+      name: key,
+      value: formData[key] ? parseFloat(formData[key]) : 0,
+    }))
+    .filter((item) => item.value > 0); 
+
+    const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#A28EFF", "#FF5F5F", "#82CA9D", "#FF73B5"];
+
   const [response, setResponse] = useState("");
   const [isLoading, setIsLoading] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
@@ -111,29 +70,32 @@ const Spendly = () => {
   };
 
   const formatDataToString = () => {
-      const totalExpenses =
-          formData.housing +
-          formData.utilities +
-          formData.groceries +
-          formData.transportation +
-          formData.entertainment +
-          formData.miscellaneous;
+    const totalExpenses =
+        formData.housing +
+        formData.utilities +
+        formData.groceries +
+        formData.transportation +
+        formData.entertainment +
+        formData.miscellaneous;
 
-      const remainingIncome = formData.total_income - totalExpenses;
+    const remainingIncome = formData.total_income - totalExpenses;
 
-      const monthsRequired = (formData.savings_target - formData.savings) / remainingIncome;
-      const isAchievable = monthsRequired <= 6;
+    const monthsRequired = (formData.savings_target - formData.savings) / remainingIncome;
 
-      const expenseString = `Monthly Income: ₹${formData.total_income}, Housing Expenses: ₹${formData.housing}, Utility Bills: ₹${formData.utilities}, Grocery Spending: ₹${formData.groceries}, Transportation Costs: ₹${formData.transportation}, Entertainment Budget: ₹${formData.entertainment}, Current Savings: ₹${formData.savings}, Miscellaneous Expenses: ₹${formData.miscellaneous}, Savings Goal: ₹${formData.savings_target}`;
+    const isAchievable = monthsRequired <= 6;
 
-      const ruralConsiderations = `Consider financial aspects unique to a rural setting, such as lower living costs, reliance on seasonal income, availability of government schemes, and possible side income sources like farming, dairy, or handicrafts. Provide advice on reducing expenses through local markets, cooperative societies, and community-based savings programs.`;
+    const expenseString = `Monthly Income: ₹${formData.total_income}, Housing Expenses: ₹${formData.housing}, Utility Bills: ₹${formData.utilities}, Grocery Spending: ₹${formData.groceries}, Transportation Costs: ₹${formData.transportation}, Entertainment Budget: ₹${formData.entertainment}, Current Savings: ₹${formData.savings}, Miscellaneous Expenses: ₹${formData.miscellaneous}, Savings Goal: ₹${formData.savings_target}`;
 
-      if (isAchievable) {
-          return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. The savings goal of ₹${formData.savings_target} is achievable within the next 6 months. Provide recommendations on maintaining financial stability and optimizing expense management while reaching the goal. ${ruralConsiderations}`;
-      } else {
-          return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. The savings goal of ₹${formData.savings_target} is NOT achievable within the next 6 months with the current budget. Please suggest rural-specific cost-cutting measures, alternative earning opportunities, and ways to manage essential expenses efficiently while utilizing available resources. ${ruralConsiderations}`;
-      }
-  };
+    const ruralConsiderations = `Consider financial aspects unique to a rural setting, such as lower living costs, reliance on seasonal income, government schemes, and possible side income sources like farming, dairy, or handicrafts. Provide advice on reducing expenses through local markets, cooperative societies, and community-based savings programs.`;
+
+    if (isAchievable) {
+        const achievableResponse = `The savings goal of ₹${formData.savings_target} is achievable within the next 6 months. Please provide recommendations on how to reduce the time frame through minor adjustments, such as cutting down on discretionary expenses, bulk buying essentials, or negotiating utility bills for discounts. ${ruralConsiderations}`;
+        return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. ${achievableResponse}`;
+    } else {
+        const notAchievableResponse = `The savings goal of ₹${formData.savings_target} is NOT achievable within the next 6 months with the current budget. Please provide recommendations on reducing costs, exploring alternative earning opportunities, and leveraging available rural resources. Suggestions could include cutting back on non-essential expenses, using public transportation more, leveraging local markets for cheaper groceries, or accessing government programs for financial assistance. ${ruralConsiderations}`;
+        return `Please analyze the following rural monthly budget data and provide specific recommendations: ${expenseString}. ${notAchievableResponse}`;
+    }
+};
 
   const validateForm = () => {
     const fields = Object.entries(formData);
@@ -199,7 +161,7 @@ const Spendly = () => {
               />
             </div>
 
-            <div className="space-y-4">
+            <div className="space-y-2">
               <h2 className="text-xl font-semibold text-white">Monthly Expenses</h2>
               <div className="grid grid-cols-2 gap-6">
                 <input
@@ -281,7 +243,7 @@ const Spendly = () => {
               />
             </div>
 
-            <div className="pt-4">
+            <div className="">
               <SubmitButton
                 onClick={sendDataToAPI}
                 disabled={isLoading}
@@ -295,7 +257,7 @@ const Spendly = () => {
             )}
           </form>
         </div>
-
+        
         {/* Response Section */}
         {(response || isLoading) && (
           <div className="lg:w-[50%] w-[95%] lg:relative lg:ml-10 mt-10 lg:mt-0 right-3 top-[20%] max-h-[80vh] overflow-y-auto custom-scrollbar">
@@ -325,9 +287,26 @@ const Spendly = () => {
             </div>
           </div>
         )}
+        <div>
+          <PieChart width={300} height={300}>
+            <Pie
+              data={data}
+              cx="50%"
+              cy="50%"
+              outerRadius={80}
+              fill="#8884d8"
+              dataKey="value"
+              label
+            >
+              {data.map((entry, index) => (
+                <Cell key={entry.name} fill={COLORS[index % COLORS.length]} />
+              ))}
+            </Pie>
+            <Tooltip />
+            <Legend />
+          </PieChart>
+        </div>
       </div>
-
-      <Footer />
 
       <style jsx global>{`
         .custom-scrollbar::-webkit-scrollbar {

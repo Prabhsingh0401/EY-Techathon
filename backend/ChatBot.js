@@ -21,7 +21,7 @@ const isFinanceRelated = (message) => {
     'entrepreneurship', 'startup', 'business plan', 'funding', 
     'financial literacy', 'financial planning', 'economic', 
     'investment strategy', 'personal finance', 'financial goal', 
-    'financial education' , 'business'
+    'financial education', 'business', 'Hey'
   ];
 
   const lowercaseMessage = message.toLowerCase();
@@ -29,6 +29,35 @@ const isFinanceRelated = (message) => {
   return financeKeywords.some(keyword => 
     lowercaseMessage.includes(keyword)
   );
+};
+
+const trimResponse = (message) => {
+  if (!message) return '';
+
+  // Define patterns to remove (introductory and conclusion phrases)
+  const introPatterns = [
+    /^(sure|of course|i'm happy to help|let me help|i can assist|i'd be glad to).*?(\.|!|\n)/i,
+    /^(hi|hello|hey|greetings|welcome|good (morning|afternoon|evening|day)).*?(\.|!|\n)/i,
+    /^thank you.*?(\.|!|\n)/i,
+  ];
+
+  const conclusionPatterns = [
+    /(thank you|let me know if you need anything else|happy to help|feel free to ask).*$/i,
+    /(goodbye|have a great day|take care|best wishes).*$/i,
+    /^(i hope this helps|does this answer your question|let me know if).*$/i,
+  ];
+
+  // Remove intro patterns
+  introPatterns.forEach((pattern) => {
+    message = message.replace(pattern, '').trim();
+  });
+
+  // Remove conclusion patterns
+  conclusionPatterns.forEach((pattern) => {
+    message = message.replace(pattern, '').trim();
+  });
+
+  return message;
 };
 
 app.post('/api/chat', async (req, res) => {
@@ -72,7 +101,10 @@ app.post('/api/chat', async (req, res) => {
 
     const response = await axios.request(options);
 
-    return res.status(200).json({ message: response.data.choices[0].message.content });
+    // Process and trim the response
+    const botMessage = trimResponse(response.data.choices[0].message.content);
+
+    return res.status(200).json({ message: botMessage });
   } catch (error) {
     console.error("Error in chat request:", error);
 
