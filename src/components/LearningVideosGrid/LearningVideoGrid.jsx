@@ -3,11 +3,11 @@ import React from 'react';
 const VideoGrid = () => {
   const videos = [
     {
-      url: 'https://www.youtube.com/embed/8zWQ9aXmeaY?si=n0JID5x7QmOM6CzW',
+      url: 'https://www.youtube.com/embed/_BJSG-fdJQA?si=icCt9fAqdnioog4s',
       title: 'Video 1'
     },
     {
-      url: 'https://www.youtube.com/embed/QpnttHx2P9k?si=wPtZsG85RLoqY8w1',
+      url: 'https://www.youtube.com/embed/igz52RqAvbU?si=28o1Lvdj-bU6AGVL',
       title: 'Video 2'
     },
     {
@@ -23,7 +23,7 @@ const VideoGrid = () => {
       title: 'Video 5'
     },
     {
-      url: 'https://www.youtube.com/embed/8zWQ9aXmeaY?si=n0JID5x7QmOM6CzW',
+      url: 'https://www.youtube.com/embed/sgsSd2FghyU?si=iop4jDnn85k9TdVv',
       title: 'Video 6'
     }
   ];

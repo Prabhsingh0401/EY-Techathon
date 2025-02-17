@@ -21,7 +21,7 @@ const isFinanceRelated = (message) => {
     'entrepreneurship', 'startup', 'business plan', 'funding', 
     'financial literacy', 'financial planning', 'economic', 
     'investment strategy', 'personal finance', 'financial goal', 
-    'financial education', 'business', 'Hey'
+    'financial education', 'business', 'Hey','bank account'
   ];
 
   const lowercaseMessage = message.toLowerCase();

@@ -1,4 +1,4 @@
-import image1 from '../../assets/image.jpg';
+import image1 from '../../assets/Kirti Suri.jpeg';
 import image2 from '../../assets/prithi.jpg';
 import image3 from '../../assets/rachana.jpg';
 import image4 from '../../assets/nisary.jpg';
@@ -25,14 +25,14 @@ function VideoMain() {
         <div className="card h-[67vh] w-[21vw] backdrop-blur-sm bg-zinc-800/50 rounded-[30px] p-12">
         <div className='h-[230px] w-[300px] rounded-xl'>
 
-           <img src={image1} className='rounded-xl'/>
+           <img src={image1} className='rounded-xl h-[230px] w-[250px]'/>
            </div>
-          <h1 className="text-xl font-bold mt-4">Monika Hans</h1>
-          <p>Chairperson of Education Fund at SEBI</p>
+          <h1 className="text-xl font-bold mt-4">Kirti Suri</h1>
+          <p>Financial Coach</p>
     
             <Link to='/Profile'>
         <button
-          className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-6"
+          className="text-white bg-gradient-to-br from-green-400 to-blue-600 hover:bg-gradient-to-bl focus:ring-4 focus:outline-none focus:ring-green-200 dark:focus:ring-green-800 font-medium rounded-lg text-sm px-5 py-2.5 text-center me-2 mb-2 mt-12"
         >
          Know More about Her
         </button>
@@ -40,7 +40,7 @@ function VideoMain() {
 
         </div>
         <div className="card1 h-[67vh] w-[21vw] backdrop-blur-sm bg-zinc-800/50 rounded-[30px] p-12">
-          <img src={image2} alt="" className='h-[230px] w-[300px] rounded-lg' />
+          <img src={image2} alt="" className='h-[230px] w-[300px] rounded-lg ' />
           <h1 className="text-xl font-bold mt-4">Prithi Rathi Gupta</h1>
           <p>Managing director of Anand Rathi Share</p>
           <button

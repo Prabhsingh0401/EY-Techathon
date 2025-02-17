@@ -1,6 +1,6 @@
 import React, { useState, useEffect, useRef } from "react";
 import NavBar from "../NavBar/NavBar";
-import image1 from "../../assets/image.jpg";
+import image1 from "../../assets/K.jpeg";
 import { Link } from "react-router-dom";
 import Calendar from "react-calendar";
 import "react-calendar/dist/Calendar.css";
@@ -155,8 +155,8 @@ function Profile() {
         {/* Left Section */}
         <div className="left w-[50%] text-white mt-40">
           <img src={image1} alt="" className="w-[200px] h-[200px] rounded-full ml-16" />
-          <h1 className="mt-7 ml-12 text-4xl">Monika Hans</h1>
-          <p className="ml-7 mt-2">Chairperson of Education Fund at SEBI</p>
+          <h1 className="mt-7 ml-24 text-4xl">Kirti Suri</h1>
+          <p className="ml-28 mt-2">Financial Coach</p>
         </div>
 
         <div className="right w-screen h-[87vh] bg-gray-800 text-white p-10 rounded-lg shadow-lg">
@@ -164,9 +164,8 @@ function Profile() {
             <div className="flex-1">
               <h1 className="text-4xl mt-5">About Me</h1>
               <p className="mt-5 text-lg text-pretty">
-                Monika is a renowned personal finance expert currently serving as the chairperson of the Advisory Committee for Investor Protection and Education Fund at SEBI (Securities and Exchange Board of India).<br></br><br></br> With her expertise, she has authored two influential books — 'Let's Talk Money' and 'Let's Talk Mutual Funds' — where she demystifies personal finances using relatable examples.
-                Moreover, Monika is the founder of 'Dhan Chakra Financial Education', a platform aimed at simplifying finance for all, including teachers, through educational content and videos.
-              </p>
+              Kriti Suri is a Financial Coach dedicated to empowering women with financial knowledge and confidence. She provides practical strategies and personalized guidance to help women manage their finances effectively and achieve financial independence.<br></br><br></br> Kriti focuses on addressing the unique financial challenges faced by women, ensuring they have the tools and resources to make informed financial decisions. Her mission is to make personal finance accessible and inclusive, inspiring women to take control of their financial journeys.
+           </p>
             </div>
 
             {showChat ? (
