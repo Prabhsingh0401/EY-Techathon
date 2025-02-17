@@ -146,58 +146,66 @@ const LearnPath = () => {
   };
 
   
+  
   const formatDataToString = () => {
-    return `Output strictly in ${formData.preferred_language}. Generate only bulleted points.
+    return `Output strictly in ${formData.preferred_language}. Generate only bulleted points with REAL, WORKING resource links.
 
-    Format:
-    - Week [number]: [topic]
-      - Specific task/learning
-      - Resource link/name
-      - Practical exercise
-      - Time required: [X] hours
+      Requirements:
+      - Every resource mentioned MUST include a direct, working URL
+      - Each week must have at least 2 specific online resources
+      - Include active YouTube channels where relevant
+      - Reference real local organizations in ${formData.location}
 
-    Learning path for:
-    - Language: ${formData.preferred_language}
-    - Location: ${formData.location}
-    - Age: ${formData.age}
-    - Level: ${formData.learning_path_type}
-    - Goal: ${formData.learning_topic}
+      Format:
+      - Week [number]: [topic]
+        - Specific task/learning
+        - Resource: [exact name with URL]
+        - Local resource: [organization name with location]
+        - Practical exercise with example
+        - Time required: [X] hours
 
-    Required output structure:
-    1. Core Learning Modules:
-      • Week-wise breakdown
-      • Direct resource links
-      • Practical tasks
-      • Time estimates
+      Learning path for:
+      - Language: ${formData.preferred_language}
+      - Location: ${formData.location}
+      - Age: ${formData.age}
+      - Level: ${formData.learning_path_type}
+      - Goal: ${formData.learning_topic}
 
-    2. Local Resources:
-      • Community programs in ${formData.location}
-      • Local training centers
-      • Regional business support
-      • Nearby mentorship options
+      Required sections:
+      1. Online Learning Resources:
+        • Specific MOOC courses with URLs
+        • YouTube channels with direct links
+        • Government portals with exact website
+        • E-learning platforms with course links
 
-    3. Free Learning Sources:
-      • Online platforms
-      • Government resources
-      • Community programs
-      • Educational videos
+      2. Local Resources in ${formData.location}:
+        • Training centers with addresses
+        • Business support organizations
+        • Mentorship programs
+        • Community centers
 
-    4. Implementation Steps:
-      • Daily actions
-      • Weekly goals
-      • Monthly targets
-      • Progress metrics
+      3. Free Learning Materials:
+        • PDF guides with download links
+        • Free course websites
+        • Government resources
+        • Educational videos
 
-    Constraints:
-    - No explanatory text
-    - Only bullet points
-    - Direct resource links
-    - Location-specific content
-    - Age-appropriate (${formData.age} years)
-    - ${formData.preferred_language} resources only
-    - Focus on practical steps
-    - Include time estimates`;
-    };
+      4. Weekly Action Plan:
+        • Specific tasks
+        • Resource to use (with link)
+        • Practice exercise
+        • Expected outcome
+
+      Response rules:
+      - Include ONLY real, verifiable resources
+      - Every learning resource must have a URL
+      - Local resources must have actual names and locations
+      - All content in ${formData.preferred_language}
+      - Age-appropriate for ${formData.age} years
+      - Include exact time commitments
+      - Focus on free/affordable options
+      - No explanatory text - only structured points`;
+      };
 
   const validateForm = () => {
     const fields = Object.entries(formData);
